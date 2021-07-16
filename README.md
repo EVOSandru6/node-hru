@@ -1,6 +1,6 @@
 # Example deploying for dockerhub
 
-Option 1.
+### Option 1.
 
 Run Container
 ```
@@ -40,4 +40,15 @@ docker pull evosandru6/node-dru:v14.17
 
 ```
 docker images
+```
+### Option 2. (Via Dockerfile)
+
+Build with tag defining
+```
+docker build -t evosandru6/node-hru:v1 .
+```
+
+Run
+```
+docker run -it --name node-hru -p 3000:8080 evosandru6/node-hru:v1
 ```
