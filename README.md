@@ -45,10 +45,25 @@ docker images
 
 Build with tag defining
 ```
-docker build -t evosandru6/node-hru:v1 .
+docker build -f sample.docker -t evosandru6/node-hru:v1 .
 ```
 
 Run
 ```
 docker run -it --name node-hru -p 3000:8080 evosandru6/node-hru:v1
+``` 
+
+Curl
+```
+curl 127.0.0.1:3000
+```
+
+Push
+```
+docker push evosandru6/node-hru:v1
+```
+
+Pull
+```
+docker pull evosandru6/node-hru:v1
 ```

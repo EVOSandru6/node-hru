@@ -2,11 +2,13 @@ FROM alpine
 
 RUN apk add npm && npm i -g http-server
 
-VOLUME /home/server
+ARG APP_DIR=/home/server
 
-WORKDIR /home/server
+VOLUME ${APP_DIR}
 
-COPY ./ /home/server/
+WORKDIR ${APP_DIR}
+
+COPY ./ ${APP_DIR}/
 
 EXPOSE 8080
 
