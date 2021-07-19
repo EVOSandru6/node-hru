@@ -1,0 +1,19 @@
+FROM node as build
+ARG APP_DIR=/opt/server
+ARG LOCAL_DIR=/app
+#VOLUME ${APP_DIR}
+WORKDIR ${APP_DIR}
+COPY ${LOCAL_DIR}/package*.json ${APP_DIR}/
+RUN npm install
+COPY ${LOCAL_DIR}/src ./src
+RUN npm run build
+
+FROM node
+ARG APP_DIR=/opt/server
+ARG LOCAL_DIR=/app
+WORKDIR ${APP_DIR}
+COPY ${LOCAL_DIR}/package*.json ${APP_DIR}/
+RUN npm install
+COPY --from=build ${APP_DIR}/dist ${APP_DIR}/dist
+EXPOSE 3000
+CMD npm start

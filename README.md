@@ -1,5 +1,11 @@
 # Example deploying for dockerhub
 
+Пример внутренней и внешней сборки + деплой
+https://youtu.be/Lu1ziKbQYIQ?t=1054
+https://github.com/drucoder/docker-site
+
+@@ Для корректного билда в текущем ридми нужно добавить webpack
+
 ### Option 1.
 
 Run Container
@@ -45,7 +51,7 @@ docker images
 
 Build with tag defining
 ```
-docker build -f sample.docker -t evosandru6/node-hru:v1 .
+docker build -t evosandru6/node-hru:v1 -f sample.docker .
 ```
 
 Run
@@ -67,3 +73,23 @@ Pull
 ```
 docker pull evosandru6/node-hru:v1
 ```
+
+### Option 2. (Via Dockerfile for nodejs app)
+
+Build
+```
+docker build -t evosandru6/web-server-external:v1 -f ex.docker .
+```
+
+Run
+```
+docker run -it --name web-ex -p 3000:3000 evosandru6/web-server-external:v1
+``` 
+
+Bash (пока список файлов в рабочей папке из контейнера, можно внести в .dockerignore лишнее при копировании)
+```
+docker run -it --name web-ex -p 3000:3000 evosandru6/web-server-external:v1 bash
+cd /opt/server
+ls -al
+```
+
